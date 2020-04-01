@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-Heldu-99DC39EE-4D63-4F9F-9BBF-D15C3161D3B8</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200401105853_NewMigration.cs" />
+    <Compile Remove="Migrations\20200401105853_NewMigration.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
