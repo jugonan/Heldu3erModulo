@@ -1,0 +1,85 @@
+@model IEnumerable<Heldu.Models.Vendedor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Lista de vendedores de Heldu</h1>
+<div class="row">
+    @foreach (Vendedor vendedor in Model)
+    {
+        <div class="card col-sm-3">
+            <div class="card-body">
+                <h5>Nombre de empresa:</h5>
+                <h6 class="card-title">@vendedor.NombreDeEmpresa</h6>
+                <br />
+                <h5>Tipo de empresa:</h5>
+                <h6 class="card-text">@vendedor.TipoDeEmpresa</h6>
+                <br />
+                <h5>NºRegistro:</h5>
+                <h6 class="card-text">@vendedor.NumeroRegistro</h6>
+                <br />
+                @foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
+                {
+                    <h5>Nombre del producto:</h5>
+                    <p class="card-text">@productoVendedor.Producto.Titulo</p>
+                    <br />
+                    <h5>Descripción:</h5>
+                    <p class="card-text">@productoVendedor.Producto.Descripcion</p>
+                    <br />
+                    <p style="color:green;">Precio:</p>
+                    <p class="card-text">@productoVendedor.Producto.Precio €</p>
+                    <br />
+                }
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@vendedor.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@vendedor.Id">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@vendedor.Id">Eliminar</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDeEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDeEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroRegistro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDeEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDeEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

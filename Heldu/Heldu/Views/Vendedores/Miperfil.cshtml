@@ -1,0 +1,18 @@
+﻿@model Heldu.Models.Vendedor
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.NombreDeEmpresa </h5>
+        <p class="card-text">@Model.TipoDeEmpresa</p>
+        <p class="card-text">@Model.NumeroRegistro</p>
+
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    </div>
+</div>
